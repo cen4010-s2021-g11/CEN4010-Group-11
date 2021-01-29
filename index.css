@@ -1,0 +1,35 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+
+.navbar-brand {
+  font-family: 'Brush Script MT', cursive;
+}
+
+.bg-image {
+      background-image: url('https://images.pexels.com/photos/346529/pexels-photo-346529.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    display: block;
+}
+
+.vertical-center {
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.display-3 {
+    font-weight: 500;
+    color: white;
+    padding: 10px;
+}
+
+.lead {
+    font-weight: 300;
+    color: white;
+}
