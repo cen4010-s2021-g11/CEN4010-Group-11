@@ -1,0 +1,36 @@
+.introduction{
+  padding-bottom: 30px;
+}
+
+.img-item{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.parent-image{
+  overflow: hidden;
+}
+
+h2{
+  padding-bottom: 30px;
+}
+
+.bottom-img{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 35px;
+}
+
+.section-ed{
+  padding-bottom: 40px;
+}
+
+.foot{
+  font-size: 10px;
+}
+
+.quote{
+  font-style: italic;
+}
