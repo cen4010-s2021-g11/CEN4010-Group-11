@@ -2,12 +2,6 @@
   padding-bottom: 30px;
 }
 
-.img-item{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .parent-image{
   overflow: hidden;
 }
@@ -31,6 +25,6 @@ h2{
   font-size: 10px;
 }
 
-.quote{
+.skills{
   font-style: italic;
 }
