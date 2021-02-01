@@ -8,6 +8,25 @@
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
+
+@media screen and (max-width: 1182px) {
+  .oneThousandPixels {
+    padding-top: 25%;
+  }
+}
+
+@media screen and (max-width: 974px) {
+  .nineHundredPixels {
+    padding-top: 25%;
+  }
+}
+
+@media screen and (max-width: 1382px) and (min-width: 1182px){
+  .fontChange {
+    font-size: 13px !important;
+  }
+}
+
 body {
   font-family: "Open Sans", sans-serif;
   color: #444;
