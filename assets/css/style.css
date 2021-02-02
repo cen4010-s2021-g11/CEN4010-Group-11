@@ -13,11 +13,25 @@
   .oneThousandPixels {
     padding-top: 25%;
   }
+	
+  .moveCardUp {
+  	margin-bottom: 9%;
+  }
 }
 
 @media screen and (max-width: 974px) {
   .nineHundredPixels {
-    padding-top: 25%;
+    padding-top: 20%;
+  }
+
+  .moveCardUp {
+  	margin-bottom: 25%;
+  }
+}
+
+@media screen and (max-width: 750px){
+  .moveCardUp {
+	margin-bottom: 15%;
   }
 }
 
