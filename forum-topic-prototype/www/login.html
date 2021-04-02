@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+		
+		<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.13.0/css/all.css">
+        
+		<!-- Load Firebase Services -->
+        <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-auth.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-firestore.js"></script>
+		<script src="/scripts/firebase_creds.js"></script>
+    </head>
+    
+    <body>
+        <header>
+       		<span>
+				<button id="googleLogin">Sign in with <i class="fab fa-google"></i></button>
+				<button id="emailLogin">Sign in with <i class="fas fa-envelope"></i></button><br>
+			</span>
+
+			<div id="signInByEmail" style="display: none">
+				
+				<br>
+				<label for="uname"><b>Email</b></label><br>
+				<input type="text" id="username" name="uname" required>
+				<br><br>
+				<span>
+					<label for="psw"><b>Password</b></label><br>
+					<input type="password" id="password" name="psw" required>
+
+					<p id="loginErrors" style="color: red"></p>
+				</span>
+				
+				<span>
+					<button id="createUser">Create</button>
+					<button onclick="goToTopic();" id="loginUser">Login</button>
+				</span>
+				
+			</div>
+					
+        </header>
+        
+        <!-- Core theme JS-->
+        <script src="scripts/database.js"></script>
+    </body>
+</html>
