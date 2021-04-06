@@ -72,8 +72,7 @@ function addInfo(i){
             }
         }).catch((error) => {
             console.log("Error getting document:", error);
-        }); 
-        
+        });     
 }
 
 function makePost(){
