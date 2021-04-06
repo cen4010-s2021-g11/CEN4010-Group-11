@@ -65,7 +65,7 @@ function addInfo(i){
                 console.log(dbText);
                 postElem.after(clonePostElem);
                 console.log("inserted");
-
+                document.getElementById("postCard1").style.display = "none";
             } else {
                 // doc.data() will be undefined in this case
                 console.log("No such document!");
