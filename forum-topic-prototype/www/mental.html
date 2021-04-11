@@ -15,7 +15,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-auth.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-firestore.js"></script>
-    <script src="scripts/firebase_creds.js"></script>
+    <script src="scripts/firebase/credentials.js"></script>
     
 </head>
 
@@ -49,6 +49,7 @@
                                             <div class="simplebar-content" style="padding: 16px;">
                                                 <nav class="nav nav-pills nav-gap-y-1 flex-column">
                                                     <a href="javascript:void(0)" class="nav-link nav-link-faded has-icon active">Mental Health</a>
+                                                    <p id="user-info"></p>
                                                     <!--<a href="javascript:void(0)" class="nav-link nav-link-faded has-icon">Popular this week</a>
                                                     <a href="javascript:void(0)" class="nav-link nav-link-faded has-icon">Popular all time</a>
                                                     <a href="javascript:void(0)" class="nav-link nav-link-faded has-icon">Solved</a>
@@ -83,6 +84,7 @@
                             <option value="3">No Replies Yet</option>
                         </select>-->
                         <span class="input-icon input-icon-sm ml-auto w-auto">
+                            <button class="btn btn-primary btn-block" id="signout">Log out</button>
                             <!--<input type="text" class="form-control form-control-sm bg-gray-200 border-gray-200 shadow-none mb-4 mt-4" placeholder="Search forum" />-->
                         </span>
                     </div>
@@ -212,7 +214,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
-                                <button type="button" onclick="makePost();" class="btn btn-primary">Post</button>
+                                <button type="button" onclick="createPost();" class="btn btn-primary">Post</button>
                             </div>
                         </form>
                     </div>
@@ -222,7 +224,7 @@
         </div>
 
         <!--SCRIPTS-->
-        <script src="scripts/post.js"></script>
+        <script src="scripts/subforum.js"></script>
 
     </body>
 
