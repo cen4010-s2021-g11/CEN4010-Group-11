@@ -9,7 +9,7 @@
         <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
 		<script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-auth.js"></script>
 		<script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-firestore.js"></script>
-		<script src="scripts/firebase_creds.js"></script>
+		<script src="scripts/firebase/credentials.js"></script>
     </head>
     
     <body>
@@ -34,7 +34,7 @@
 				
 				<span>
 					<button id="createUser">Create</button>
-					<button onclick="goToTopic();" id="loginUser">Login</button>
+					<button id="loginUser">Login</button>
 				</span>
 				
 			</div>
@@ -42,6 +42,7 @@
         </header>
         
         <!-- Core theme JS-->
-        <script src="scripts/database.js"></script>
+        <!-- <script src="scripts/database.js"></script> -->
+		<script src="scripts/firebase/authentication.js"></script>
     </body>
 </html>

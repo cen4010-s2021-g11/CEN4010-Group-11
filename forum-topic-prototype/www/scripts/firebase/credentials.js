@@ -1,6 +1,10 @@
 //For Firebase JS SDK v7.20.0 and later, measurementId is optional
 //Go to Firebase project, then project settings, then scroll down to view Firebase SDK config
-var firebaseConfig = {
+// import firebase from "firebase/app"
+// import "firebase/auth"
+// import "firebase/firestore"
+
+const firebaseConfig = {
 	apiKey: "AIzaSyBMYpCdReggTVnRMGI47Z3BUFOaRYR9rxI",
   	authDomain: "login-70193.firebaseapp.com",
   	projectId: "login-70193",
