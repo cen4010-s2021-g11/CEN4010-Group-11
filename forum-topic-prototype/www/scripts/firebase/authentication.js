@@ -1,22 +1,28 @@
-var emailForm = document.querySelector("#username");
-var passwordForm = document.querySelector("#password");
+var emailForm = document.querySelector("#createEmail");
+var usernameForm = document.querySelector("#createUsername");
+var passwordForm = document.querySelector("#createPassword");
+var confirmPasswordForm = document.querySelector("#confirmPassword");
  
-document.querySelector("#emailLogin").addEventListener("click", function() {
-	document.getElementById("signInByEmail").style.display = "inline";
-});
 
 document.querySelector("#loginUser").addEventListener("click", function() {
 	login();
 });
 
-document.querySelector("#createUser").addEventListener("click", function() {
-	document.getElementById("createUser").style.display = "inline";
+document.querySelector("#confirmCreate").addEventListener("click", function() {
 	registerWithEmail();
 });
 
 document.querySelector("#googleLogin").addEventListener("click", function() {
     registerWithGoogle();
+});
+
+document.querySelector("#profileBtn").addEventListener("click", function() {
+    gotToProfile();
 })
+
+function gotToProfile(){
+    window.location.href="profile.html";
+}
 
 function registerWithGoogle() {
     var provider = new firebase.auth.GoogleAuthProvider();
@@ -27,6 +33,7 @@ function registerWithGoogle() {
             var token = credential.accessToken;
             var user = result.user;
             upsertUser(result.user);
+            $("#signInModal").modal("hide");
         })
         .catch((error) => {
             console.log(`${error.code}: ${error.message}`);
@@ -36,26 +43,42 @@ function registerWithGoogle() {
 
 function registerWithEmail() {
     var email = emailForm.value;
+    var username = usernameForm.value;
     var password = passwordForm.value;
+    var confirmPassword = passwordForm.value;
 
-    firebase.auth().createUserWithEmailAndPassword(email, password)
+    if(password == confirmPassword){
+        firebase.auth().createUserWithEmailAndPassword(email, password)
         .then((userCredential) => {
             //login()
 
             // Upsert user to Firestore 
-            const user = userCredential.user;
-            upsertUser(user);
-
+            var user = userCredential.user;
+            console.log(username);
+            user.updateProfile({
+                displayName: username,
+              }).then(function() {
+                // Update successful.
+                upsertUser(user);
+                alert("Hey your account was created! Yay!");
+                $("#createModal").modal("hide");
+              }).catch(function(error) {
+                // An error happened.
+              });
         })
         .catch((error) => {
             console.log(`${error.code}: ${error.message}`);
             document.getElementById("loginErrors").innerHTML = error.message;
         });
+    }else{
+        alert("Passwords do not match");
+    }
+    
 }
 
 function login() {
-    const email = emailForm.value;
-    const password = passwordForm.value;
+    const email = document.getElementById("loginEmail").value;
+    const password = document.getElementById("loginPassword").value;
 
     firebase.auth().signInWithEmailAndPassword(email, password)
         .then((userCredential) => {
@@ -63,6 +86,7 @@ function login() {
             var user = userCredential.user;
             console.log("signed in");
             console.log(user.email);
+            $("#signInModal").modal("hide");
         })
         .catch((error) => {
             console.log(error.message);
@@ -78,16 +102,19 @@ function upsertUser(user) {
     })
     .then(() => {
         console.log(`User with email ${user.email} created!`);
+        location.reload();
     })
     .catch((error) => {
         console.log(error.message);
     });
 }
 
-
-
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-        window.location = "mental.html";
+        //console.log(user.displayName);
+        document.getElementById("profileBtn").style.display = "block";
+        document.getElementById("signInBtn").style.display = "none";
+        document.getElementById("welcomeUser").innerHTML = "Welcome, " + user.displayName + " we're glad you're here!";
+        document.getElementById("welcomeUser").style.display = "block";
     }
 });

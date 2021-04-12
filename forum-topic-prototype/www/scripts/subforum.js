@@ -9,21 +9,12 @@ firebase.auth().onAuthStateChanged(function(user) {
         console.log(currUser.email);
     } else {
         console.log("Error: no user found");
-        window.location = "login.html";
     }
 });
 
 window.onload = function() {
     getPosts();
 }
-
-document.querySelector("#signout").addEventListener("click", function() {
-    firebase.auth().signOut().then(() => {
-        console.log("Sign out successful...");
-      }).catch((error) => {
-        console.log(error.message);
-      });
-})
 
 function createPost() {
     var postTitle = document.getElementById("threadTitle").value;

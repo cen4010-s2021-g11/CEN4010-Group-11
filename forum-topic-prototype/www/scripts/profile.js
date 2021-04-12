@@ -17,6 +17,15 @@ firebase.auth().onAuthStateChanged(function(user) {
 
     } else {
         console.log("Error: no user found");
-        window.location = "login.html";
     }
 });
+
+document.querySelector("#signOutBtn").addEventListener("click", function() {
+    firebase.auth().signOut().then(() => {
+        console.log("Sign out successful...");
+        alert("Thanks for stopping by!");
+        window.location.href="home.html";
+      }).catch((error) => {
+        console.log(error.message);
+    });
+})
