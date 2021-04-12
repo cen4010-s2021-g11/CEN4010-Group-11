@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+		
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" integrity="sha256-46r060N2LrChLLb5zowXQ72/iKKNiw/lAmygmHExk/o=" crossorigin="anonymous" />
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+	
+		<!-- Third party plugin JS-->
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    	<link href="./css/profilecss.css" rel="stylesheet">
+        
+		<!--Firebase-->
+    	<script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-auth.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-firestore.js"></script>
+    	<script src="scripts/firebase/credentials.js"></script>
+	
+    </head>
+    
+    <body>
+        <header>
+			<div class="container bootstrap snippets bootdeys">
+				<div class="row" id="user-profile">
+					
+					
+					<div class="col-lg-3 col-md-4 col-sm-4">
+						<div class="main-box clearfix">
+							<h2 id="displayName">User</h2>
+							<img id="userImage" src="assests/anonymous-pfp.jpg" alt="" class="profile-img img-responsive center-block" height="100%" width="100%">
+							<div class="profile-label">
+								<span class="label label-danger">Admin</span>
+							</div>
+
+							<!-- <div class="profile-stars">
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star-o"></i>
+								<span>Super User</span>
+							</div>
+
+							<div class="profile-since">
+								Member since: Jan 2012
+							</div> -->
+
+							<div class="profile-details">
+								<ul class="fa-ul">
+									<!-- <li><i class="fa-li fa fa-truck"></i>Orders: <span>456</span></li> -->
+									<li><i class="fa-li fa fa-comment"></i>Posts: <span></span></li>
+									<!-- <li><i class="fa-li fa fa-tasks"></i>Tasks done: <span>1024</span></li> -->
+								</ul>
+							</div>
+
+							<div id="signOutBtn" class="profile-message-btn center-block text-center">
+								<a href="#" class="btn btn-success">
+									<i></i> Sign Out
+								</a>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-lg-9 col-md-8 col-sm-8">
+						<div class="main-box clearfix">
+							<div class="profile-header">
+								<h3><span>User info</span></h3>
+								<a href="./editProfile.html" class="btn btn-primary edit-profile">
+									<i class="fa fa-pencil-square fa-lg"></i> Edit profile
+								</a>
+							</div>
+
+							<div class="row profile-user-info">
+								<div class="col-sm-8">
+									<div class="profile-user-details clearfix">
+										<div class="profile-user-details-label">
+											First Name
+										</div>
+										<div class="profile-user-details-value">
+											John
+										</div>
+									</div>
+									<div class="profile-user-details clearfix">
+										<div class="profile-user-details-label">
+											Last Name
+										</div>
+										<div class="profile-user-details-value">
+											Doe
+										</div>
+									</div>
+									<div class="profile-user-details clearfix">
+										<div class="profile-user-details-label">
+											Address
+										</div>
+										<div class="profile-user-details-value">
+											10880 Malibu Point,
+											<br> Malibu, Calif., 90265
+										</div>
+									</div>
+									<div class="profile-user-details clearfix">
+										<div class="profile-user-details-label">
+											Email
+										</div>
+										<div id="email" class="profile-user-details-value">
+										</div>
+									</div>
+									<div class="profile-user-details clearfix">
+										<div class="profile-user-details-label">
+											Phone number
+										</div>
+										<div class="profile-user-details-value">
+											011 223 344 556 677
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-4 profile-social">
+									<ul class="fa-ul">
+										<li><i class="fa-li fa fa-twitter-square"></i><a href="#">@scjohansson</a></li>
+										<li><i class="fa-li fa fa-linkedin-square"></i><a href="#"></a></li>
+										<li><i class="fa-li fa fa-facebook-square"></i><a href="#"></a></li>
+										<li><i class="fa-li fa fa-skype"></i><a href="#"></a></li>
+										<li><i class="fa-li fa fa-instagram"></i><a href="#"></a></li>
+									</ul>
+								</div>
+							</div>
+
+							<div class="tabs-wrapper profile-tabs">
+								<ul class="nav nav-tabs">
+									<li class="active">Activity</li>
+								</ul>
+
+								<div class="tab-content">
+									<div id="tab-activity">
+
+										<div class="table-responsive">
+											<table class="table">
+												<tbody>
+													<tr>
+														<td class="text-center">
+															<i class="fa fa-comment"></i>
+														</td>
+														<td>
+															John Doe  posted a comment in <a href="#">Avengers Initiative</a> project.
+														</td>
+														<td>
+															2014/08/08 12:08
+														</td>
+													</tr>
+													<tr>
+														<td class="text-center">
+															<i class="fa fa-truck"></i>
+														</td>
+														<td>
+															John Doe  changed order status from <span class="label label-primary">Pending</span> to <span class="label label-success">Completed</span>
+														</td>
+														<td>
+															2014/08/08 12:08
+														</td>
+													</tr>
+													<tr>
+														<td class="text-center">
+															<i class="fa fa-check"></i>
+														</td>
+														<td>
+															John Doe  posted a comment in <a href="#">Lost in Translation opening scene</a> discussion.
+														</td>
+														<td>
+															2014/08/08 12:08
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+    	</header>
+        
+        <!-- Core theme JS-->
+        <script src="scripts/profile.js"></script>
+    </body>
+</html>
