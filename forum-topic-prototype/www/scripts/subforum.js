@@ -5,6 +5,7 @@ var posts = [];
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
         currUser = user;
+        console.log(user);
         document.getElementById("user-info").innerHTML = user.email
         console.log(currUser.email);
     } else {

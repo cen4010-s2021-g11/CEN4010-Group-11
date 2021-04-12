@@ -44,6 +44,7 @@ function registerWithEmail() {
 
             // Upsert user to Firestore 
             const user = userCredential.user;
+            console.log(user);
             upsertUser(user);
 
         })
