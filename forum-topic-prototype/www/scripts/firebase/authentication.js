@@ -20,16 +20,6 @@ document.querySelector("#profileBtn").addEventListener("click", function() {
     gotToProfile();
 })
 
-document.querySelector("#mentalHealth").addEventListener("click", function(e) {
-    e.preventDefault();
-    window.location.href = "topic.html?ref=mentalHealth"
-})
-
-document.querySelector("#intro").addEventListener("click", function(e) {
-    e.preventDefault();
-    window.location.href = "topic.html?ref=introductions"
-})
-
 function gotToProfile(){
     window.location.href="profile.html";
 }

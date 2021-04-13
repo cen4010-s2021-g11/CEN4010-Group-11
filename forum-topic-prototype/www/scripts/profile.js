@@ -2,6 +2,7 @@ var currUser;
 //var ref = db.collection("mentalHealthTopic");
 var posts = [];
 var email = document.querySelector("#email");
+var userName = document.querySelector("#displayNameInfo");
 var userImage = document.querySelector("#userImage");
 
 firebase.auth().onAuthStateChanged(function(user) {
@@ -9,6 +10,7 @@ firebase.auth().onAuthStateChanged(function(user) {
         console.log(user);
 
         email.innerHTML = user.email;
+        userName.innerHTML = user.displayName;
         console.log(user.email);
 
         if (user.photoURL != undefined) {

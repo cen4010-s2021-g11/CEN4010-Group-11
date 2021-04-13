@@ -22,7 +22,10 @@
     
     <body>
         <header>
+			<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+			
 			<div class="container bootstrap snippets bootdeys">
+				
 				<div class="row" id="user-profile">
 					
 					
@@ -34,19 +37,6 @@
 								<span class="label label-danger">Admin</span>
 							</div>
 
-							<!-- <div class="profile-stars">
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star-o"></i>
-								<span>Super User</span>
-							</div>
-
-							<div class="profile-since">
-								Member since: Jan 2012
-							</div> -->
-
 							<div class="profile-details">
 								<ul class="fa-ul">
 									<!-- <li><i class="fa-li fa fa-truck"></i>Orders: <span>456</span></li> -->
@@ -55,14 +45,19 @@
 								</ul>
 							</div>
 
+							<div style="padding:20px;" id="homeBtn" class="profile-message-btn center-block text-center">
+								<a href="home.html" class="btn btn-success">
+									Home
+								</a>
+							</div>
 							<div id="signOutBtn" class="profile-message-btn center-block text-center">
 								<a href="#" class="btn btn-success">
 									Sign Out
 								</a>
 							</div>
+							
 						</div>
 					</div>
-					
 					<div class="col-lg-9 col-md-8 col-sm-8">
 						<div class="main-box clearfix">
 							<div class="profile-header">
@@ -76,29 +71,13 @@
 								<div class="col-sm-8">
 									<div class="profile-user-details clearfix">
 										<div class="profile-user-details-label">
-											First Name
+											Display
 										</div>
-										<div class="profile-user-details-value">
-											John
-										</div>
-									</div>
-									<div class="profile-user-details clearfix">
-										<div class="profile-user-details-label">
-											Last Name
-										</div>
-										<div class="profile-user-details-value">
-											Doe
+										<div id="displayNameInfo" class="profile-user-details-value">
 										</div>
 									</div>
-									<div class="profile-user-details clearfix">
-										<div class="profile-user-details-label">
-											Address
-										</div>
-										<div class="profile-user-details-value">
-											10880 Malibu Point,
-											<br> Malibu, Calif., 90265
-										</div>
-									</div>
+									
+								
 									<div class="profile-user-details clearfix">
 										<div class="profile-user-details-label">
 											Email
@@ -106,16 +85,9 @@
 										<div id="email" class="profile-user-details-value">
 										</div>
 									</div>
-									<div class="profile-user-details clearfix">
-										<div class="profile-user-details-label">
-											Phone number
-										</div>
-										<div class="profile-user-details-value">
-											011 223 344 556 677
-										</div>
-									</div>
+									
 								</div>
-								<div class="col-sm-4 profile-social">
+								<!--<div class="col-sm-4 profile-social">
 									<ul class="fa-ul">
 										<li><i class="fa-li fa fa-twitter-square"></i><a href="#">@scjohansson</a></li>
 										<li><i class="fa-li fa fa-linkedin-square"></i><a href="#"></a></li>
@@ -123,7 +95,7 @@
 										<li><i class="fa-li fa fa-skype"></i><a href="#"></a></li>
 										<li><i class="fa-li fa fa-instagram"></i><a href="#"></a></li>
 									</ul>
-								</div>
+								</div>-->
 							</div>
 
 							<div class="tabs-wrapper profile-tabs">
