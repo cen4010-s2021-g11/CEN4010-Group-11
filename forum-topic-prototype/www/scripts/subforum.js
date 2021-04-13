@@ -12,7 +12,6 @@ ref.get()
         document.getElementById("title").innerHTML = doc.data().title;
     }).catch((error) => {
         console.log("Error has occurred", error);
-        window.location = '404.html'
     })
 
 firebase.auth().onAuthStateChanged(function(user) {
