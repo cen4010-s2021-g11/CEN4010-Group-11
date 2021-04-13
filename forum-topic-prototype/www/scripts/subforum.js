@@ -5,7 +5,7 @@ const urlParams = new URLSearchParams(queryString);
 const topic = urlParams.get('ref')
 const ref = db.collection('subforums').doc(topic);
 const el = document.getElementById(topic);
-el.setAttribute("class", el.getAttribute('class')+' active')
+el.setAttribute("class", el.getAttribute('class')+' active');
 
 ref.get()
     .then((doc) => {

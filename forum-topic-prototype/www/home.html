@@ -124,8 +124,7 @@
                     <div class="ibox-content forum-container">
 
                         <div class="forum-title">
-                            <div class="pull-right forum-desc">
-                                <samll>Total posts: 320,800</samll>
+                            <div class="pull-right forum-desc" id="totalPosts">
                             </div>
                             <h3>Browse Topics</h3>
                         </div>
@@ -136,11 +135,11 @@
                                     <div class="forum-icon">
                                         <i class="fa fa-clock"></i>
                                     </div>
-                                    <a href="topic.html" id="intro" class="forum-item-title">Introductions</a>
+                                    <a href="topic.html" id="introductions" class="forum-item-title">Introductions</a>
                                     <div class="forum-sub-title">New to the forum? Stop by and say hi.</div>
                                 </div>
                                 <div class="col-md-3 forum-info pull-right">
-                                    <span class="views-number">
+                                    <span class="views-number" id="introductionsCount">
                                         140
                                     </span>
                                     <div>
@@ -160,7 +159,7 @@
                                     <div class="forum-sub-title">Check here for the latest updates from the DIVOC team.</div>
                                 </div>
                                 <div class="col-md-3 forum-info">
-                                    <span class="views-number">
+                                    <span class="views-number" id="announcementsCount">
                                         61
                                     </span>
                                     <div>
@@ -180,9 +179,7 @@
                                     <div class="forum-sub-title">Reach out for community support.</div>
                                 </div>
                                 <div class="col-md-3 forum-info">
-                                    <span class="views-number">
-                                        154
-                                    </span>
+                                    <span class="views-number" id="mentalHealthCount"></span>
                                     <div>
                                         <small>Posts</small>
                                     </div>
@@ -197,12 +194,10 @@
                                         <i class="fa fa-ambulance"></i>
                                     </div>
                                     <a href="topic.html" class="forum-item-title" id="news">News</a>
-                                    <div class="forum-sub-title">Share interesting news about COVID-19. </div>
+                                    <div class="forum-sub-title">Share interesting news about COVID-19.</div>
                                 </div>
                                 <div class="col-md-3 forum-info">
-                                    <span class="views-number">
-                                        61
-                                    </span>
+                                    <span class="views-number" id="newsCount"></span>
                                     <div>
                                         <small>Posts</small>
                                     </div>
@@ -220,9 +215,7 @@
                                     <div class="forum-sub-title">Share information or personal stories about the COVID-19 vaccine. </div>
                                 </div>
                                 <div class="col-md-3 forum-info">
-                                    <span class="views-number">
-                                        61
-                                    </span>
+                                    <span class="views-number" id="vaccineCount"></span>
                                     <div>
                                         <small>Posts</small>
                                     </div>
@@ -240,9 +233,7 @@
                                     <div class="forum-sub-title">Have personal stories that you'd like to share? Here is the place.</div>
                                 </div>
                                 <div class="col-md-3 forum-info">
-                                    <span class="views-number">
-                                        61
-                                    </span>
+                                    <span class="views-number" id="personalCount"></span>
                                     <div>
                                         <small>Posts</small>
                                     </div>
@@ -258,6 +249,7 @@
         <script src="scripts/firebase/credentials.js"></script>
         <script src="scripts/firebase/authentication.js" defer></script>
         <script src="scripts/redirects.js"></script>
+        <script src="scripts/home.js"></script>
 
     </body>
 
