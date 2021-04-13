@@ -1,4 +1,5 @@
 var currUser;
+var currUserEmail = "";
 var posts = [];
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
@@ -14,15 +15,25 @@ ref.get()
         console.log("Error has occurred", error);
     })
 
+    
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
         currUser = user;
+        currUserEmail = user.email;
         console.log(user);
-        document.getElementById("user-info").innerHTML = user.email
+        //document.getElementById("user-info").innerHTML = user.email
         console.log(currUser.email);
+        document.getElementById("profileBtn").style.display = "block";
+        document.getElementById("signInBtn").style.display = "none";
+        document.getElementById("welcomeUser").innerHTML = "Welcome, " + user.displayName + " we're glad you're here!";
+        document.getElementById("welcomeUser").style.display = "block";
     } else {
         console.log("Error: no user found");
     }
+});
+
+document.querySelector("#homeGlobe").addEventListener("click", function() {
+	window.location.href = "home.html";
 });
 
 window.onload = function() {
@@ -33,29 +44,35 @@ function createPost() {
     var postTitle = document.getElementById("threadTitle").value;
     var postText = document.getElementById("postText").value;
 
-    ref.collection('posts').add({
-        title: postTitle,
-        text: postText,
-        owner: currUser.email,
-        createdAt: firebase.firestore.FieldValue.serverTimestamp()
-    })
-    .then((post) => {
-        alert("Post Successful! Thank you for your contribution to the DIVOC Forum");
-        console.log("Document successfully written!");
-
-        db.collection("users").doc(currUser.uid).update({
-            posts: firebase.firestore.FieldValue.arrayUnion(post)
+    if(currUserEmail != ""){
+        ref.collection('posts').add({
+            title: postTitle,
+            text: postText,
+            owner: currUser.email,
+            createdAt: firebase.firestore.FieldValue.serverTimestamp()
         })
+        .then((post) => {
+            alert("Post Successful! Thank you for your contribution to the DIVOC Forum");
+            console.log("Document successfully written!");
 
-        ref.update({
-            numOfPosts: firebase.firestore.FieldValue.increment(1)
+            db.collection("users").doc(currUser.uid).update({
+                posts: firebase.firestore.FieldValue.arrayUnion(post)
+            })
+
+            ref.update({
+                numOfPosts: firebase.firestore.FieldValue.increment(1)
+            })
+
+            location.reload();
         })
-
-        location.reload();
-    })
-    .catch((error) => {
-        console.error("Error writing document: ", error);
-    });
+        .catch((error) => {
+            console.error("Error writing document: ", error);
+        });
+    }else{
+        alert("Hey bud, please sign in to contribute to the forum!");
+        $("#threadModal").modal("hide");
+    }
+    
 }
 
 function getPosts() {
