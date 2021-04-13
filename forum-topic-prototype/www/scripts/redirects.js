@@ -1,32 +1,32 @@
 document.querySelector("#introductions").addEventListener("click", function(e) {
     e.preventDefault();
-    window.location.href = "topic.html?ref=introductions"
+    window.location.href = "topic.html?ref=introductions";
 });
 
 document.querySelector("#announcements").addEventListener("click", function(e) {
     e.preventDefault();
-    window.location.href = "topic.html?ref=announcements"
+    window.location.href = "topic.html?ref=announcements";
 });
 
 document.querySelector("#mentalHealth").addEventListener("click", function(e) {
     e.preventDefault();
-    window.location.href = "topic.html?ref=mentalHealth"
+    window.location.href = "topic.html?ref=mentalHealth";
 });
 
 
 document.querySelector("#news").addEventListener("click", function(e) {
     e.preventDefault();
-    window.location.href = "topic.html?ref=news"
+    window.location.href = "topic.html?ref=news";
 });
 
 
 document.querySelector("#vaccine").addEventListener("click", function(e) {
     e.preventDefault();
-    window.location.href = "topic.html?ref=vaccine"
+    window.location.href = "topic.html?ref=vaccine";
 });
 
 
 document.querySelector("#personal").addEventListener("click", function(e) {
     e.preventDefault();
-    window.location.href = "topic.html?ref=personal"
+    window.location.href = "topic.html?ref=personal";
 })
