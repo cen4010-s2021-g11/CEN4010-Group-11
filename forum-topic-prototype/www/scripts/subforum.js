@@ -5,7 +5,7 @@ const urlParams = new URLSearchParams(queryString);
 const topic = urlParams.get('ref')
 const ref = db.collection('subforums').doc(topic);
 const el = document.getElementById(topic);
-el.setAttribute("class", el.getAttribute('class')+' active')
+el.setAttribute("class", el.getAttribute('class')+' active');
 
 ref.get()
     .then((doc) => {
@@ -14,15 +14,24 @@ ref.get()
         console.log("Error has occurred", error);
     })
 
+    
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
         currUser = user;
         console.log(user);
-        document.getElementById("user-info").innerHTML = user.email
+        //document.getElementById("user-info").innerHTML = user.email
         console.log(currUser.email);
+        document.getElementById("profileBtn").style.display = "block";
+        document.getElementById("signInBtn").style.display = "none";
+        document.getElementById("welcomeUser").innerHTML = "Welcome, " + user.displayName + " we're glad you're here!";
+        document.getElementById("welcomeUser").style.display = "block";
     } else {
         console.log("Error: no user found");
     }
+});
+
+document.querySelector("#homeGlobe").addEventListener("click", function() {
+	window.location.href = "home.html";
 });
 
 window.onload = function() {
