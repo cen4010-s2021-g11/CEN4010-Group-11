@@ -1,6 +1,19 @@
 var currUser;
-var ref = db.collection("mentalHealthTopic");
 var posts = [];
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const topic = urlParams.get('ref')
+const ref = db.collection('subforums').doc(topic);
+const el = document.getElementById(topic);
+el.setAttribute("class", el.getAttribute('class')+' active')
+
+ref.get()
+    .then((doc) => {
+        document.getElementById("title").innerHTML = doc.data().title;
+    }).catch((error) => {
+        console.log("Error has occurred", error);
+        window.location = '404.html'
+    })
 
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
@@ -21,7 +34,7 @@ function createPost() {
     var postTitle = document.getElementById("threadTitle").value;
     var postText = document.getElementById("postText").value;
 
-    ref.add({
+    ref.collection('posts').add({
         title: postTitle,
         text: postText,
         owner: currUser.email,
@@ -35,6 +48,10 @@ function createPost() {
             posts: firebase.firestore.FieldValue.arrayUnion(post)
         })
 
+        ref.update({
+            numOfPosts: firebase.firestore.FieldValue.increment(1)
+        })
+
         location.reload();
     })
     .catch((error) => {
@@ -43,7 +60,7 @@ function createPost() {
 }
 
 function getPosts() {
-    ref.orderBy('createdAt', 'asc').get()
+    ref.collection('posts').orderBy('createdAt', 'asc').get()
         .then((doc) => {
             doc.forEach(doc => {
                 posts.push(doc);
@@ -57,12 +74,12 @@ function getPosts() {
 
 function renderPosts() {
     var postElem = document.getElementById("postCard");
+    //postElem.style.visibility = "hidden"
 
     posts.forEach(doc => {
         const data = doc.data();
         var clonePostElem = postElem.cloneNode(true);
         clonePostElem.id = doc.id
-        clonePostElem.style.display = "block";
 
         var cardTitle = document.getElementById("cardTitle");
         var cardText = document.getElementById("cardText");
@@ -71,6 +88,7 @@ function renderPosts() {
         cardText.innerHTML = data.text;
         cardUser.innerHTML = data.owner;
         postElem.after(clonePostElem);
+        postElem.style.display = "block" //hides model card
     })
 }
 
