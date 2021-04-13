@@ -48,7 +48,12 @@
                                         <div class="simplebar-content-wrapper" style="height: 100%;">
                                             <div class="simplebar-content" style="padding: 16px;">
                                                 <nav class="nav nav-pills nav-gap-y-1 flex-column">
-                                                    <a href="javascript:void(0)" class="nav-link nav-link-faded has-icon active">Mental Health</a>
+                                                    <a href="javascript:void(0)" class="nav-link nav-link-faded has-icon" id="introductions">Introductions</a>
+                                                    <a href="javascript:void(0)" class="nav-link nav-link-faded has-icon" id="announcements">Announcements</a>
+                                                    <a href="javascript:void(0)" class="nav-link nav-link-faded has-icon" id="mentalHealth">Mental Health</a>
+                                                    <a href="javascript:void(0)" class="nav-link nav-link-faded has-icon" id="news">News</a>
+                                                    <a href="javascript:void(0)" class="nav-link nav-link-faded has-icon" id="vaccine">Vaccine</a>
+                                                    <a href="javascript:void(0)" class="nav-link nav-link-faded has-icon" id="personal">Personal</a>
                                                     <p id="user-info"></p>
                                                     <!--<a href="javascript:void(0)" class="nav-link nav-link-faded has-icon">Popular this week</a>
                                                     <a href="javascript:void(0)" class="nav-link nav-link-faded has-icon">Popular all time</a>
@@ -75,7 +80,7 @@
                     <!-- Inner main header -->
                     <div class="inner-main-header">
                         
-                        <h4>Topic - Mental Health</h4>
+                        <h4 id="title"></h4>
                         <!--<select class="custom-select custom-select-sm w-auto mr-1">
                             <option selected="">Latest</option>
                             <option value="1">Popular</option>
@@ -96,7 +101,7 @@
         
                     <!-- Forum List -->
                     <div class="inner-main-body p-2 p-sm-3 collapse forum-content show">
-                        <div style="display:block" id="postCard" class="card mb-2">
+                        <div style="display:none" id="postCard" class="card mb-2">
                             <div class="card-body p-2 p-sm-3">
                                 <div class="media forum-item">
                                     <a href="#" data-toggle="collapse" data-target=".forum-content"><img src="https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg" class="mr-3 rounded-circle" width="50" alt="User" /></a>
@@ -157,7 +162,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card mb-2">
+                        <div class="card mb-2" id="comment">
                             <div class="card-body">
                                 <div class="media forum-item">
                                     <a href="javascript:void(0)" class="card-link">
@@ -227,6 +232,7 @@
 
         <!--SCRIPTS-->
         <script src="scripts/subforum.js"></script>
+        <script src="scripts/redirects.js"></script>
 
     </body>
 
