@@ -107,5 +107,3 @@ function renderPosts() {
         postElem.style.display = "block" //hides model card
     })
 }
-
-

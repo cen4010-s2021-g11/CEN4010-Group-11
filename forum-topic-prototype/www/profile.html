@@ -10,7 +10,8 @@
 	
 		<!-- Third party plugin JS-->
     	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-    	<link href="./css/profilecss.css" rel="stylesheet">
+    	<link href="css/profilecss.css" rel="stylesheet">
+		<link href="css/styles.css" rel="stylesheet">
         
 		<!--Firebase-->
     	<script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
@@ -21,81 +22,115 @@
     </head>
     
     <body>
-        <header>
+    	<header>
 			<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 			
 			<div class="container bootstrap snippets bootdeys">
 				
 				<div class="row" id="user-profile">
 					
-					
 					<div class="col-lg-3 col-md-4 col-sm-4">
 						<div class="main-box clearfix">
 							<h2 id="displayName">User</h2>
 							<img id="userImage" src="assests/anonymous-pfp.jpg" alt="" class="profile-img img-responsive center-block" height="100%" width="100%">
 							<div class="profile-label">
-								<span class="label label-danger">Admin</span>
+								<span class="label label-danger">Member</span>
 							</div>
 
 							<div class="profile-details">
 								<ul class="fa-ul">
-									<!-- <li><i class="fa-li fa fa-truck"></i>Orders: <span>456</span></li> -->
 									<li><i class="fa-li fa fa-comment"></i>Posts: <span></span></li>
-									<!-- <li><i class="fa-li fa fa-tasks"></i>Tasks done: <span>1024</span></li> -->
 								</ul>
 							</div>
 
 							<div style="padding:20px;" id="homeBtn" class="profile-message-btn center-block text-center">
-								<a href="home.html" class="btn btn-success">
-									Home
-								</a>
+								<a href="home.html" class="btn btn-primary btn-success">Home</a>
 							</div>
-							<div id="signOutBtn" class="profile-message-btn center-block text-center">
-								<a href="#" class="btn btn-success">
-									Sign Out
-								</a>
+							<div id="signOutBtn" class="center-block text-center">
+								<a href="#" class="btn btn-primary btn-success">Sign Out</a>
 							</div>
 							
 						</div>
 					</div>
+
 					<div class="col-lg-9 col-md-8 col-sm-8">
 						<div class="main-box clearfix">
 							<div class="profile-header">
 								<h3><span>User info</span></h3>
-								<a href="./editProfile.html" class="btn btn-primary edit-profile">
+
+								<div class="modal fade" id="editProfileModal" tabindex="-1" role="dialog" aria-labelledby="editProfileModalLabel" aria-hidden="true">
+									<div class="modal-dialog modal-lg" role="document">
+										<div class="modal-content">
+												<div class="modal-header d-flex align-items-center text-white">
+													<h6 class="modal-title mb-0" id="eidtProfileModalLabel">Edit Profile</h6>
+													<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+														<span aria-hidden="true">×</span>
+													</button>
+												</div>
+					  
+												<div class="modal-body" style="text-align: center;">
+													<div class="col-lg-10" style="margin-left: auto; margin-right: auto; text-align: center;">
+														<form onsubmit="saveInfo(); return false" role="form" class="">
+															<h6 style="text-align: center; padding-bottom: 2vh;">Edit Profile</h6>
+											
+															<div class="col form-group">
+																<input type="text" class="form-control" name="firstName" id="firstName" placeholder="First Name"/>
+																<div class="validate"></div>
+															</div>
+
+															<div class="col form-group">
+																<input type="text" class="form-control" name="lastName" id="lastName" placeholder="Last Name"/>
+																<div class="validate"></div>
+															</div>
+											
+															<div class="text-center" style="text-align: center;">
+																<button type="button" class="btn btn-primary" id="btnSave">Save</button>
+															</div>
+
+														</form>
+										  
+													  
+													  </div>
+												</div>
+					  
+												<div class="modal-footer"></div>
+										</div>
+									</div>
+								</div>
+
+								<button type="button" class="btn btn-primary edit-profile" id="editProfileBtn" data-toggle="modal" data-target="#editProfileModal">
 									<i class="fa fa-pencil-square fa-lg"></i> Edit profile
-								</a>
+								</button>
 							</div>
 
 							<div class="row profile-user-info">
 								<div class="col-sm-8">
+
 									<div class="profile-user-details clearfix">
-										<div class="profile-user-details-label">
-											Display
-										</div>
-										<div id="displayNameInfo" class="profile-user-details-value">
-										</div>
+										<div id="firstNameDiv" class="profile-user-details-label"></div>
+
+										<div id="displayFirstNameInfo" class="profile-user-details-value"></div>
+									</div>
+
+									<div class="profile-user-details clearfix">
+										<div id="lastNameDiv" class="profile-user-details-label"></div>
+
+										<div id="displayLastNameInfo" class="profile-user-details-value"></div>
+									</div>
+
+									<div class="profile-user-details clearfix">
+										<div class="profile-user-details-label">Display</div>
+
+										<div id="displayNameInfo" class="profile-user-details-value"></div>
 									</div>
 									
-								
 									<div class="profile-user-details clearfix">
-										<div class="profile-user-details-label">
-											Email
-										</div>
-										<div id="email" class="profile-user-details-value">
-										</div>
+										<div class="profile-user-details-label">Email</div>
+										
+										<div id="email" class="profile-user-details-value"></div>
 									</div>
-									
+
 								</div>
-								<!--<div class="col-sm-4 profile-social">
-									<ul class="fa-ul">
-										<li><i class="fa-li fa fa-twitter-square"></i><a href="#">@scjohansson</a></li>
-										<li><i class="fa-li fa fa-linkedin-square"></i><a href="#"></a></li>
-										<li><i class="fa-li fa fa-facebook-square"></i><a href="#"></a></li>
-										<li><i class="fa-li fa fa-skype"></i><a href="#"></a></li>
-										<li><i class="fa-li fa fa-instagram"></i><a href="#"></a></li>
-									</ul>
-								</div>-->
 							</div>
 
 							<div class="tabs-wrapper profile-tabs">
@@ -109,14 +144,14 @@
 										<div class="table-responsive">
 											<table class="table">
 												<tbody>
-													<tr>
+													<tr id="activityRow">
 														<td class="text-center">
 															<i class="fa fa-comment"></i>
 														</td>
-														<td>
+														<td id="userActivity">
 															John Doe  posted a comment in <a href="#">Avengers Initiative</a> project.
 														</td>
-														<td>
+														<td id="timestamp">
 															2014/08/08 12:08
 														</td>
 													</tr>
@@ -126,17 +161,6 @@
 														</td>
 														<td>
 															John Doe  changed order status from <span class="label label-primary">Pending</span> to <span class="label label-success">Completed</span>
-														</td>
-														<td>
-															2014/08/08 12:08
-														</td>
-													</tr>
-													<tr>
-														<td class="text-center">
-															<i class="fa fa-check"></i>
-														</td>
-														<td>
-															John Doe  posted a comment in <a href="#">Lost in Translation opening scene</a> discussion.
 														</td>
 														<td>
 															2014/08/08 12:08
@@ -159,5 +183,6 @@
         
         <!-- Core theme JS-->
         <script src="scripts/profile.js"></script>
+		<script src="scripts/editProfile.js"></script>
     </body>
 </html>
