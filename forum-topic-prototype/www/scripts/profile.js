@@ -1,6 +1,6 @@
 var currUser;
 var email = document.querySelector("#email");
-var userName = document.querySelector("#displayNameInfo");
+var username = document.querySelector("#displayNameInfo");
 var userImage = document.querySelector("#userImage");
 var userID;
 
@@ -15,18 +15,21 @@ firebase.auth().onAuthStateChanged(function(user) {
 
                 document.getElementById("firstNameDiv").innerHTML = "First Name";
                 if (doc.data().firstName == null) {
-                    document.getElementById("displayFirstNameInfo").innerHTML = "";
+                    document.getElementById("displayFirstNameInfo").innerHTML = "N/A";
                 } else { document.getElementById("displayFirstNameInfo").innerHTML = doc.data().firstName; }
                 
                 document.getElementById("lastNameDiv").innerHTML = "Last Name";
                 if (doc.data().lastName == null) {
-                    document.getElementById("displayLastNameInfo").innerHTML = "";
+                    document.getElementById("displayLastNameInfo").innerHTML = "N/A";
                 } else { document.getElementById("displayLastNameInfo").innerHTML = doc.data().lastName; }
 
-                console.log(doc.data().posts[0]);
+                //console.log(doc.data().posts);
+                if (doc.data().posts == undefined) {
+                    document.getElementById("postCount").innerHTML = "0 total posts";
+                } else { document.getElementById("postCount").innerHTML = doc.data().posts.length + " total posts" }
 
             } else {
-                // doc.data() will be undefined in this case
+                //doc.data() will be undefined in this case
                 console.log("No such document!");
             }
         }).catch((error) => {
@@ -34,10 +37,10 @@ firebase.auth().onAuthStateChanged(function(user) {
         });
 
 
-        db.collection('users').doc(user.uid).get(GetOptions)
-
+        //db.collection('users').doc(user.uid).get(GetOptions)
+        username.innerHTML = user.displayName; 
+        displayName.innerHTML = user.displayName;
         email.innerHTML = user.email;
-        userName.innerHTML = user.displayName;
 
         if (user.photoURL != undefined) {
             userImage.src = user.photoURL; 
