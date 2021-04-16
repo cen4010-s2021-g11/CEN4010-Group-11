@@ -2,8 +2,8 @@ var currUser;
 var email = document.querySelector("#email");
 var username = document.querySelector("#displayNameInfo");
 var userImage = document.querySelector("#userImage");
-var firstName = document.getElementById("displayFirstNameInfo");
-var lastName = document.getElementById("displayLastNameInfo");
+var firstNameDisplay = document.getElementById("displayFirstNameInfo");
+var lastNameDisplay = document.getElementById("displayLastNameInfo");
 var postCount = document.getElementById("postCount");
 var path;
 var postPath;
@@ -23,18 +23,17 @@ firebase.auth().onAuthStateChanged(function(user) {
                 console.log(currUser.uid);
 
                 document.getElementById("firstNameDiv").innerHTML = "First Name";
-                if (doc.data().firstName == undefined) {
-                    firstName.innerHTML = "N/A";
+                if (doc.data().firstName == undefined || doc.data().firstName == "") {
+                    firstNameDisplay.innerHTML = "N/A";
                 } else { 
-                    console.log(doc.data().firstName);
-                    firstName.innerHTML = doc.data().firstName; 
+                    firstNameDisplay.innerHTML = doc.data().firstName; 
                 }
                 
                 document.getElementById("lastNameDiv").innerHTML = "Last Name";
-                if (doc.data().lastName == undefined) {
-                    lastName.innerHTML = "N/A";
+                if (doc.data().lastName == undefined || doc.data().lastName == "") {
+                    lastNameDisplay.innerHTML = "N/A";
                 } else { 
-                    lastName.innerHTML = doc.data().lastName; 
+                    lastNameDisplay.innerHTML = doc.data().lastName; 
                 }
 
                 if (doc.data().posts == undefined) {
@@ -87,7 +86,7 @@ function renderPostActivity(postPath, topic) {
             
             rowTimestamp.innerHTML = elapsedTime(postTime);
             postActivity.after(clonePostActivity);
-            postActivity.style.display = "block" //hides model card
+            //postActivity.style.display = "block" //hides model card
         } else {
             //doc.data() will be undefined in this case
             console.log("No such document!");
