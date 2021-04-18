@@ -15,6 +15,13 @@ body{
     }
 }
 
+.commentIcon {
+  color: black;
+}
+.commentIcon:hover {
+  color: gray;
+}
+
 .inner-main,
 .inner-sidebar {
     position: absolute;
