@@ -1,29 +1,27 @@
 var firstName = document.getElementById("firstName");
 var lastName = document.getElementById("lastName");
-var instagram = document.getElementById("instagram");
-var twitter = document.getElementById("twitter");
-var facebook = document.getElementById("facebook");
+
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+        currUser = user;
+    } else {
+        console.log("Error: no user found");
+    }
+});
 
 document.getElementById("btnSave").addEventListener("click", function(){
     var firstnameInput = firstName.value;
     var lastNameInput = lastName.value;
-    var instagramInput = instagram.value;
-    var twitterInput = twitter.value;
-    var facebookInput = facebook.value;
 
-    db.collection("users").doc(user.uid).set({
+    db.collection("users").doc(currUser.uid).update({
         firstName: firstnameInput,
         lastName: lastNameInput,
-        instagram: instagramInput,
-        twitter: twitterInput,
-        facebook: facebookInput
     })
     .then(() => {
         console.log("User information has been updated!");
+        window.location.href = "profile.html";
     })
     .catch((error) => {
         console.log(error.message);
     });
-
-    window.location.href = "profile.html";
 });
