@@ -1,5 +1,6 @@
 var currUser;
 var currUserEmail = "";
+var currPfp = "";
 var posts = [];
 var searchResults = [];
 const queryString = window.location.search;
@@ -54,6 +55,22 @@ firebase.auth().onAuthStateChanged(function(user) {
         document.getElementById("signInBtn").style.display = "none";
         document.getElementById("welcomeUser").innerHTML = "Welcome, " + user.displayName + " we're glad you're here!";
         document.getElementById("welcomeUser").style.display = "block";
+
+        db.collection('users').doc(currUser.uid).get().then((doc) => {
+            if (doc.exists) {
+                //console.log(doc.data().profilePic);
+                if (doc.data().profilePic == undefined || doc.data().profilePic == "") {
+                    currPfp = "fa-user";
+                } else { 
+                    currPfp = doc.data().profilePic;
+                }
+            } else {
+                console.log("No such document!"); 
+            }
+        }).catch((error) => {
+            console.log("Error getting document:", error);
+        });
+
     } else {
         console.log("Error: no user found");
     }
@@ -72,6 +89,7 @@ function createPost() {
             title: postTitle,
             text: postText,
             owner: currUser.email,
+            ownerPic: currPfp,
             createdAt: firebase.firestore.FieldValue.serverTimestamp(),
         })
         .then((post) => {
@@ -132,6 +150,18 @@ function renderPosts() {
         var cardNumOfComments = document.getElementById("numOfComments");
         var cardNumOfLikes = document.getElementById("numOfLikes");
         var cardNumOfDislikes = document.getElementById("numOfDislikes");
+        var cardPic = document.getElementById("userImage");
+
+        cardPic.className = "mr-3 rounded-circle profIcon";
+        console.log(data.ownerPic);
+        if(data.ownerPic == "" || data.ownerPic == undefined){
+            cardPic.classList.add("fa-user");
+        }else{
+            cardPic.classList.add(data.ownerPic);
+        }
+        cardPic.classList.add("fa");
+        cardPic.classList.add("fa-2x");
+
         cardTitle.innerHTML = data.title;
         cardText.innerHTML = data.text;
         cardUser.innerHTML = data.owner;
@@ -195,6 +225,7 @@ function renderSearchResults() {
         //document.getElementById("loadMore").style.display = "none";
     })
 }
+
 
 function timeSince(date) {
     var seconds = Math.floor((new Date() - date)/1000);

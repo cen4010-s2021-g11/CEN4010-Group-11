@@ -15,10 +15,10 @@ body{
     }
 }
 
-.commentIcon, .thumbIcon{
+.commentIcon, .thumbIcon, .profIcon{
   color: black;
 }
-.commentIcon:hover, .thumbIcon:hover {
+.commentIcon:hover, .thumbIcon:hover, .profIcon:hover {
   color: gray;
 }
 .alreadyLiked{
