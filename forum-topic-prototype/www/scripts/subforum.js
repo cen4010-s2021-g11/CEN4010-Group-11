@@ -70,6 +70,8 @@ function createPost() {
                 numOfPosts: firebase.firestore.FieldValue.increment(1)
             })
 
+            posts.
+
             location.reload();
         })
         .catch((error) => {
