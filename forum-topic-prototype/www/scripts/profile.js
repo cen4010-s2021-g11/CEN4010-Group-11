@@ -8,76 +8,88 @@ var postCount = document.getElementById("postCount");
 var path;
 var postPath;
 var currentTime = Math.floor(new Date().getTime() / 1000);
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const userIDPar = urlParams.get('user');
 
 firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-        currUser = user;
-        username.innerHTML = currUser.displayName; 
-        displayName.innerHTML = currUser.displayName;
-        email.innerHTML = currUser.email;
-        /*if (currUser.photoURL != undefined) { 
-            userImage.src = currUser.photoURL; 
-        }*/
-
-        db.collection('users').doc(currUser.uid).get().then((doc) => {
-            if (doc.exists) {
-                console.log("Document data:", doc.data());
-                console.log(currUser.uid);
-
-                var pic = document.getElementById("userImage");
-                console.log(doc.data().profilePic);
-                if (doc.data().profilePic == undefined || doc.data().profilePic == "") {
-                    pic.className = "profile-img img-responsive center-block";
-                    pic.classList.add("fa-user");
-                    pic.classList.add("fa");
-                    pic.classList.add("fa-5x");
-                } else { 
-                    pic.className = "profile-img img-responsive center-block";
-                    pic.classList.add(doc.data().profilePic);
-                    pic.classList.add("fa");
-                    pic.classList.add("fa-5x");
-                }
-
-                document.getElementById("firstNameDiv").innerHTML = "First Name";
-                if (doc.data().firstName == undefined || doc.data().firstName == "") {
-                    firstNameDisplay.innerHTML = "N/A";
-                } else { 
-                    firstNameDisplay.innerHTML = doc.data().firstName; 
-                }
-                
-                document.getElementById("lastNameDiv").innerHTML = "Last Name";
-                if (doc.data().lastName == undefined || doc.data().lastName == "") {
-                    lastNameDisplay.innerHTML = "N/A";
-                } else { 
-                    lastNameDisplay.innerHTML = doc.data().lastName; 
-                }
-
-                if (doc.data().posts == undefined) {
-                    postCount.innerHTML = "0 total posts";
-                } else if (doc.data().posts.length == 1) {
-                    postCount.innerHTML = doc.data().posts.length + " total post"; 
-                } else { 
-                    postCount.innerHTML = doc.data().posts.length + " total posts"; 
-                }
-                
-                for (var i = 0; i < doc.data().posts.length; i++) {
-                    path = doc.data().posts[i]._delegate._key.path.segments
-                    postPath = path[5] + "/" + path[6] + "/" + path[7];
-                    topic = path[6];
-                    //console.log(postPath);
-                    renderPostActivity(postPath, topic);
-                }
-
-            } else {
-                //doc.data() will be undefined in this case
-                console.log("No such document!");
-            }
-        }).catch((error) => {
-            console.log("Error getting document:", error);
-        });
-
-    } else { console.log("Error: no user found"); }
+    if(userIDPar && userIDPar != user.uid) {
+        document.getElementById("editProfileBtn").style.display = "none";
+        document.getElementById("signOutBtn").style.display = "none";
+        getUser(userIDPar);
+    }
+    else {
+        if (user) {
+            currUser = user;
+            username.innerHTML = currUser.displayName; 
+            displayName.innerHTML = currUser.displayName;
+            email.innerHTML = currUser.email;
+            getUser(user.uid);
+        } else { console.log("Error: no user found"); }
+    }
 });
+
+function getUser(userid) {
+    db.collection('users').doc(userid).get().then((doc) => {
+        if (doc.exists) {
+            currUser = doc.data();
+            console.log("Document data:", doc.data());
+            console.log(currUser.uid);
+            username.innerHTML = doc.data().displayName;
+            email.innerHTML = doc.data().email;
+
+            var pic = document.getElementById("userImage");
+            console.log(doc.data().profilePic);
+            if (doc.data().profilePic == undefined || doc.data().profilePic == "") {
+                pic.className = "profile-img img-responsive center-block";
+                pic.classList.add("fa-user");
+                pic.classList.add("fa");
+                pic.classList.add("fa-5x");
+            } else { 
+                pic.className = "profile-img img-responsive center-block";
+                pic.classList.add(doc.data().profilePic);
+                pic.classList.add("fa");
+                pic.classList.add("fa-5x");
+            }
+
+            document.getElementById("firstNameDiv").innerHTML = "First Name";
+            if (doc.data().firstName == undefined || doc.data().firstName == "") {
+                firstNameDisplay.innerHTML = "N/A";
+            } else { 
+                firstNameDisplay.innerHTML = doc.data().firstName; 
+            }
+            
+            document.getElementById("lastNameDiv").innerHTML = "Last Name";
+            if (doc.data().lastName == undefined || doc.data().lastName == "") {
+                lastNameDisplay.innerHTML = "N/A";
+            } else { 
+                lastNameDisplay.innerHTML = doc.data().lastName; 
+            }
+
+            if (doc.data().posts == undefined) {
+                postCount.innerHTML = "0 total posts";
+            } else if (doc.data().posts.length == 1) {
+                postCount.innerHTML = doc.data().posts.length + " total post"; 
+            } else { 
+                postCount.innerHTML = doc.data().posts.length + " total posts"; 
+            }
+            
+            for (var i = 0; i < doc.data().posts.length; i++) {
+                path = doc.data().posts[i]._delegate._key.path.segments
+                postPath = path[5] + "/" + path[6] + "/" + path[7];
+                topic = path[6];
+                //console.log(postPath);
+                renderPostActivity(postPath, topic);
+            }
+
+        } else {
+            //doc.data() will be undefined in this case
+            console.log("No such document!");
+        }
+    }).catch((error) => {
+        console.log("Error getting document:", error);
+    });
+}
 
 function renderPostActivity(postPath, topic) {
     var postActivity = document.getElementById("activityRow");
