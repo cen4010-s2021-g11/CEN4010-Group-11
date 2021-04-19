@@ -32,7 +32,9 @@
 					<div class="col-lg-3 col-md-4 col-sm-4">
 						<div class="main-box clearfix">
 							<h2 id="displayName"></h2>
-							<img id="userImage" src="assests/anonymous-pfp.jpg" alt="" class="profile-img img-responsive center-block" height="100%" width="100%">
+							<div style="text-align: center;">
+								<i id="userImage" class="profile-img img-responsive center-block"></i>
+							</div>
 							<div class="profile-label">
 								<span class="label label-danger">Member</span>
 							</div>
@@ -82,6 +84,34 @@
 																<input type="text" class="form-control" name="lastName" id="lastName" placeholder="Last Name"/>
 																<div class="validate"></div>
 															</div>
+
+															<div class="col form-group">
+																<div class="dropdown">
+																	<button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+																		Profile Picture
+																	</button>
+																	<div class="dropdown-menu overflow-auto" aria-labelledby="dropdownMenuButton">
+																		<a id="fa-globe" class="dropdown-item" onclick="setActive(this)"><i class="fa fa-globe fa-sm"></i> Globe</a>
+																		<a id="fa-github-alt" class="dropdown-item" onclick="setActive(this)"><i class="fa fa-github-alt fa-sm"></i> Github</a>
+																		<a id="fa-rocket" class="dropdown-item" onclick="setActive(this)"><i class="fa fa-rocket fa-sm"></i> Rocket</a>
+																		<a id="fa-linux" class="dropdown-item" onclick="setActive(this)"><i class="fa fa-linux fa-sm"></i> Linux</a>
+																		<a id="fa-automobile" class="dropdown-item" onclick="setActive(this)"><i class="fa fa-automobile fa-sm"></i> Automobile</a>
+																		<a id="fa-user-secret" class="dropdown-item" onclick="setActive(this)"><i class="fa fa-user-secret fa-sm"></i> Secret</a>
+																		<a id="fa-space-shuttle" class="dropdown-item" onclick="setActive(this)"><i class="fa fa-space-shuttle fa-sm"></i> Shuttle</a>
+																		<a id="fa-bug" class="dropdown-item" onclick="setActive(this)"><i class="fa fa-bug fa-sm"></i> Bug</a>
+																		<a id="fa-shield" class="dropdown-item" onclick="setActive(this)"><i class="fa fa-shield fa-sm"></i> Shield</a>
+																		<a id="fa-simplybuilt" class="dropdown-item" onclick="setActive(this)"><i class="fa fa-simplybuilt fa-sm"></i> Box</a>
+																		<a id="fa-star-half-o" class="dropdown-item" onclick="setActive(this)"><i class="fa fa-star-half-o fa-sm"></i> Star</a>
+																		<a id="fa-drupal" class="dropdown-item" onclick="setActive(this)"><i class="fa fa-drupal fa-sm"></i> Lil Drup</a>
+																		<a id="fa-user" class="dropdown-item" onclick="setActive(this)"><i class="fa fa-user fa-sm"></i> User</a>
+																	</div>
+																</div>
+															</div>
+
+															<div class="col form-group">
+																<i id="formPfp"></i>
+															</div>
+
 											
 															<div class="text-center" style="text-align: center;">
 																<button type="button" class="btn btn-primary" id="btnSave">Save</button>

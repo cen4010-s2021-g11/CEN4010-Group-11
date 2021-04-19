@@ -15,12 +15,28 @@ firebase.auth().onAuthStateChanged(function(user) {
         username.innerHTML = currUser.displayName; 
         displayName.innerHTML = currUser.displayName;
         email.innerHTML = currUser.email;
-        if (currUser.photoURL != undefined) { userImage.src = currUser.photoURL; }
+        /*if (currUser.photoURL != undefined) { 
+            userImage.src = currUser.photoURL; 
+        }*/
 
         db.collection('users').doc(currUser.uid).get().then((doc) => {
             if (doc.exists) {
                 console.log("Document data:", doc.data());
                 console.log(currUser.uid);
+
+                var pic = document.getElementById("userImage");
+                console.log(doc.data().profilePic);
+                if (doc.data().profilePic == undefined || doc.data().profilePic == "") {
+                    pic.className = "profile-img img-responsive center-block";
+                    pic.classList.add("fa-user");
+                    pic.classList.add("fa");
+                    pic.classList.add("fa-5x");
+                } else { 
+                    pic.className = "profile-img img-responsive center-block";
+                    pic.classList.add(doc.data().profilePic);
+                    pic.classList.add("fa");
+                    pic.classList.add("fa-5x");
+                }
 
                 document.getElementById("firstNameDiv").innerHTML = "First Name";
                 if (doc.data().firstName == undefined || doc.data().firstName == "") {
@@ -153,3 +169,13 @@ document.querySelector("#signOutBtn").addEventListener("click", function() {
         console.log(error.message);
     });
 });
+
+function setActive(elem){
+    console.log(elem.id);
+    console.log(document.getElementById("formPfp").classList);
+    document.getElementById("formPfp").className = "";
+    document.getElementById("formPfp").classList.add("fa");
+    document.getElementById("formPfp").classList.add(elem.id);
+    document.getElementById("formPfp").classList.add("fa-4x");
+    console.log(document.getElementById("formPfp").classList[1]);
+}
