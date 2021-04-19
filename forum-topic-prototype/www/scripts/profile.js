@@ -32,7 +32,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 function getUser(userid) {
     db.collection('users').doc(userid).get().then((doc) => {
         if (doc.exists) {
-            currUser = doc.data();
+            var currUser = doc.data();
             console.log("Document data:", doc.data());
             console.log(currUser.uid);
             username.innerHTML = doc.data().displayName;
