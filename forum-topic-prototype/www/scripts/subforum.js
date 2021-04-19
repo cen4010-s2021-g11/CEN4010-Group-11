@@ -89,6 +89,7 @@ function createPost() {
             title: postTitle,
             text: postText,
             owner: currUser.email,
+            ownerID: currUser.uid,
             ownerPic: currPfp,
             createdAt: firebase.firestore.FieldValue.serverTimestamp(),
         })

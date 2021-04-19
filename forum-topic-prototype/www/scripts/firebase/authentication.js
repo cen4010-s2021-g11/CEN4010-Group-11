@@ -1,3 +1,4 @@
+var currUser;
 var emailForm = document.querySelector("#createEmail");
 var usernameForm = document.querySelector("#createUsername");
 var passwordForm = document.querySelector("#createPassword");
@@ -15,14 +16,6 @@ document.querySelector("#confirmCreate").addEventListener("click", function() {
 document.querySelector("#googleLogin").addEventListener("click", function() {
     registerWithGoogle();
 });
-
-document.querySelector("#profileBtn").addEventListener("click", function() {
-    gotToProfile();
-})
-
-function gotToProfile(){
-    window.location.href="profile.html";
-}
 
 function registerWithGoogle() {
     var provider = new firebase.auth.GoogleAuthProvider();
@@ -112,6 +105,7 @@ function upsertUser(user) {
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
         //console.log(user.displayName);
+        currUser = user;
         document.getElementById("profileBtn").style.display = "block";
         document.getElementById("signInBtn").style.display = "none";
         document.getElementById("welcomeUser").innerHTML = "Welcome, " + user.displayName + " we're glad you're here!";
