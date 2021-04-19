@@ -30,7 +30,7 @@
                         <i id="homeGlobe" class="fa fa-globe text-navy mid-icon"></i>
                     </div>
                     <h2>DIVOC FORUM</h2>
-                    <span id="welcomeUser">Feel free to choose topic you're interested in.</span>
+                    <span id="welcomeUser">Feel free to choose a topic you're interested in.</span>
                 </div>
                 <span class="input-icon input-icon-sm ml-auto w-auto" style="padding: 12px;">
                     <button type="button" class="btn btn-primary" id="signInBtn" data-toggle="modal" data-target="#signInModal">Sign In</button>
@@ -176,11 +176,17 @@
                     
                     <!-- Inner main header -->
                     <div class="inner-main-header">
-                        <h4 id="title"></h4>
-                        <form class="form-inline ml-auto w-auto" onkeypress="return event.keyCode != 13;">
-                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="searchBar">
-                            <button class="btn btn-primary" type="button" id="search"><i class="fas fa-search"></i> Search</button>
-                          </form>
+                        <div class="col-sm-6">
+                            <h4 id="title"></h4>
+                        </div>
+                        
+                        <div class="col-sm-6">
+                            <form class="form-inline ml-auto w-auto" onkeypress="return event.keyCode != 13;">
+                                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" style="width:50%" id="searchBar">
+                                <button class="btn btn-primary" type="button" id="search"><i class="fas fa-search"></i></button>
+                            </form>
+                        </div>
+                        
                     </div>
 
                     <!-- /Inner main header -->
