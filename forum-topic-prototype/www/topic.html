@@ -176,11 +176,17 @@
                     
                     <!-- Inner main header -->
                     <div class="inner-main-header">
-                        <h4 id="title"></h4>
-                        <form class="form-inline ml-auto w-auto" onkeypress="return event.keyCode != 13;">
-                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="searchBar">
-                            <button class="btn btn-primary" type="button" id="search"><i class="fas fa-search"></i> Search</button>
-                          </form>
+                        <div class="col-sm-6">
+                            <h4 id="title"></h4>
+                        </div>
+                        
+                        <div class="col-sm-6">
+                            <form class="form-inline ml-auto w-auto" onkeypress="return event.keyCode != 13;">
+                                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" style="width:50%" id="searchBar">
+                                <button class="btn btn-primary" type="button" id="search"><i class="fas fa-search"></i></button>
+                            </form>
+                        </div>
+                        
                     </div>
 
                     <!-- /Inner main header -->
