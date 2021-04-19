@@ -32,6 +32,12 @@
                     <h2>DIVOC FORUM</h2>
                     <span id="welcomeUser">Feel free to choose topic you're interested in.</span>
                 </div>
+                <span class="input-icon input-icon-sm ml-auto w-auto" style="padding: 12px;">
+                    <button type="button" class="btn btn-primary" id="signInBtn" data-toggle="modal" data-target="#signInModal">Sign In</button>
+                    <button type="button" class="btn btn-primary" id="profileBtn" style="display: none;">Profile</button>
+            
+                    <!--<input type="text" class="form-control form-control-sm bg-gray-200 border-gray-200 shadow-none mb-4 mt-4" placeholder="Search forum" />-->
+                </span>
                 <div class="col-lg-6">
                 </div>
             </div>
@@ -170,18 +176,13 @@
                     
                     <!-- Inner main header -->
                     <div class="inner-main-header">
-
                         <h4 id="title"></h4>
-                        <span class="input-icon input-icon-sm ml-auto w-auto">
-							
-                            <button type="button" class="btn btn-primary" id="signInBtn" data-toggle="modal" data-target="#signInModal">Sign In</button>
-                            <button type="button" class="btn btn-primary" id="profileBtn" style="display: none;">Profile</button>
-                    
-                            <!--<input type="text" class="form-control form-control-sm bg-gray-200 border-gray-200 shadow-none mb-4 mt-4" placeholder="Search forum" />-->
-                        </span>
+                        <form class="form-inline ml-auto w-auto" onkeypress="return event.keyCode != 13;">
+                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="searchBar">
+                            <button class="btn btn-primary" type="button" id="search"><i class="fas fa-search"></i> Search</button>
+                          </form>
                     </div>
 
-                    
                     <!-- /Inner main header -->
         
                     <!-- Inner main body -->
@@ -193,6 +194,9 @@
                               <span class="sr-only">Loading...</span>
                             </div>
                           </div>
+                          
+                        <button href="javascript:void(0)" id="cancelSearch" style="display: none;" class="btn btn-light btn-sm mb-3 has-icon"><i class="fa fa-arrow-left mr-2"></i>Back</button>
+
                         <div style="display:none" id="postCard" class="card mb-2 post">
                             <div class="card-body p-2 p-sm-3">
                                 <div class="media forum-item">
@@ -346,7 +350,6 @@
         <script src="scripts/likes.js"></script>
         <script src="scripts/redirects.js"></script>
         <script src="scripts/firebase/authentication.js" defer></script>
-
     </body>
 
 </html>
