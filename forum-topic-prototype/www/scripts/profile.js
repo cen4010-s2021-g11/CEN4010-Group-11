@@ -93,7 +93,6 @@ function renderPostActivity(postPath, topic) {
             var postTime = Math.floor(data.createdAt.seconds);
 
             var clonePostActivity = postActivity.cloneNode(true);
-            clonePostActivity.id = doc.id
             
 
             var rowTitle = document.getElementById("userActivity");
@@ -102,6 +101,8 @@ function renderPostActivity(postPath, topic) {
             
             rowTimestamp.innerHTML = elapsedTime(postTime);
             postActivity.after(clonePostActivity);
+            postActivity.id = doc.id;
+            postActivity.style.display = "table-row";
             //postActivity.style.display = "block" //hides model card
         } else {
             //doc.data() will be undefined in this case
