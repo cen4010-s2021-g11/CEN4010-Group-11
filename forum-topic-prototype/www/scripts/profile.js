@@ -1,4 +1,5 @@
 var currUser;
+var tempUser;
 var email = document.querySelector("#email");
 var username = document.querySelector("#displayNameInfo");
 var userImage = document.querySelector("#userImage");
@@ -32,14 +33,11 @@ firebase.auth().onAuthStateChanged(function(user) {
 function getUser(userid) {
     db.collection('users').doc(userid).get().then((doc) => {
         if (doc.exists) {
-            var currUser = doc.data();
-            console.log("Document data:", doc.data());
-            console.log(currUser.uid);
+            tempUser = doc.data();
             username.innerHTML = doc.data().displayName;
             email.innerHTML = doc.data().email;
 
             var pic = document.getElementById("userImage");
-            console.log(doc.data().profilePic);
             if (doc.data().profilePic == undefined || doc.data().profilePic == "") {
                 pic.className = "profile-img img-responsive center-block";
                 pic.classList.add("fa-user");
@@ -78,7 +76,6 @@ function getUser(userid) {
                 path = doc.data().posts[i]._delegate._key.path.segments
                 postPath = path[5] + "/" + path[6] + "/" + path[7];
                 topic = path[6];
-                //console.log(postPath);
                 renderPostActivity(postPath, topic);
             }
 
@@ -97,8 +94,6 @@ function renderPostActivity(postPath, topic) {
     db.collection(postPath).doc(path[8]).get()
     .then((doc) => {
         if (doc.exists) {
-            console.log(doc.data());
-            console.log(postPath);
             const data = doc.data();
 
             var capitalizedTopic = topic.charAt(0).toUpperCase() + topic.slice(1);
@@ -109,7 +104,7 @@ function renderPostActivity(postPath, topic) {
 
             var rowTitle = document.getElementById("userActivity");
             var rowTimestamp = document.getElementById("timestamp");
-            rowTitle.innerHTML = currUser.displayName + " made a post in the <a href='topic.html?ref=" + topic + "'>" + capitalizedTopic + "</a> topic";
+            rowTitle.innerHTML = tempUser.displayName + " made a post in the <a href='topic.html?ref=" + topic + "'>" + capitalizedTopic + "</a> topic";
             
             rowTimestamp.innerHTML = elapsedTime(postTime);
             postActivity.after(clonePostActivity);
