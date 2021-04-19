@@ -15,11 +15,18 @@ body{
     }
 }
 
-.commentIcon {
+.commentIcon, .thumbIcon{
   color: black;
 }
-.commentIcon:hover {
+.commentIcon:hover, .thumbIcon:hover {
   color: gray;
+}
+.alreadyLiked{
+  color:green;
+}
+
+.alreadyDisliked{
+  color:red;
 }
 
 .inner-main,
@@ -351,3 +358,4 @@ body{margin-top:20px;
     .m-b-sm {
         margin-bottom: 10px;
     }
+  

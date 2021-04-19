@@ -43,8 +43,10 @@ function createComment() {
     })
 }
 
-function getComments(postID) {
+function getComments(elem) {
+    var postID = elem.parentNode.parentNode.parentNode.parentNode.id;
     currPostID = postID;
+    console.log(postID);
     if(!activePost) {
         var refresh = window.location.href + '&post='+postID;
         window.history.pushState({ path: refresh }, '', refresh);

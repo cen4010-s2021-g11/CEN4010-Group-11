@@ -193,12 +193,12 @@
                               <span class="sr-only">Loading...</span>
                             </div>
                           </div>
-                        <div style="display:none" data-toggle="collapse" data-target=".forum-content" id="postCard" onclick="getComments(this.id)" class="card mb-2 post">
+                        <div style="display:none" id="postCard" class="card mb-2 post">
                             <div class="card-body p-2 p-sm-3">
                                 <div class="media forum-item">
                                     <a href="profile.html" id="showComments"><img id="profile" src="https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg" class="mr-3 rounded-circle" width="50" alt="User"></a>
                                     <div class="media-body">
-                                        <h6 style="padding-bottom: 0px"><a href="#" data-toggle="collapse" data-target=".forum-content" class="text-body" id="cardTitle">Welcome to the Mental Health Thread</a></h6>
+                                        <h6 style="padding-bottom: 0px"><a href="#" data-target=".forum-content" class="text-body" id="cardTitle">Welcome to the Mental Health Thread</a></h6>
                                         <div class="row" style="padding-left: 15px;">
                                         <p style="font-size: 12px; padding-top: 0px;" id="cardUser">DIVOC Forum Team</p>
                                         <small class="text-muted ml-2" id="postTime">1 hour ago</small>
@@ -210,10 +210,18 @@
                                     </div>
                                     <div class="text-muted small text-center align-self-end ">
                                         <small style="font-size: small;" id="numOfComments"></small>
-                                        <a href="#" data-toggle="collapse" data-target=".forum-content" class="commentIcon"><i class="fas fa-comments fa-2x"></i></a>
+                                        <i class="fas fa-comments fa-2x commentIcon" data-toggle="collapse" data-target=".forum-content" onclick="getComments(this);"></i>
+                                        <br>
+                                        <br>
+                                        <small style="font-size: small;" id="numOfLikes"></small>
+                                        <i id="likeBtn" class="thumbIcon fas fa-thumbs-up fa-sm" onclick="event.stopPropagation(); getActionLike(this);"></i>
+                                        
+                                        <small style="font-size: small;" id="numOfDislikes"></small>
+                                        <i class="thumbIcon fas fa-thumbs-down fa-sm" onclick="event.stopPropagation(); getActionDislike(this);"></i>
                                         <!--<span class="d-none d-sm-inline-block"><i class="far fa-eye"></i> 19</span>
                                         <span><i class="far fa-comment ml-2"></i> 3</span>-->
                                     </div>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -337,6 +345,7 @@
         <!--SCRIPTS-->
         <script src="scripts/subforum.js"></script>
         <script src="scripts/comments.js"></script>
+        <script src="scripts/likes.js"></script>
         <script src="scripts/redirects.js"></script>
         <script src="scripts/firebase/authentication.js" defer></script>
 

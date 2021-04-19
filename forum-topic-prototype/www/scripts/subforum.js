@@ -54,7 +54,7 @@ function createPost() {
             title: postTitle,
             text: postText,
             owner: currUser.email,
-            createdAt: firebase.firestore.FieldValue.serverTimestamp()
+            createdAt: firebase.firestore.FieldValue.serverTimestamp(),
         })
         .then((post) => {
             alert("Post Successful! Thank you for your contribution to the DIVOC Forum");
@@ -114,11 +114,15 @@ function renderPosts() {
         var cardUser = document.getElementById("cardUser");
         var cardTime = document.getElementById("postTime");
         var cardNumOfComments = document.getElementById("numOfComments");
+        var cardNumOfLikes = document.getElementById("numOfLikes");
+        var cardNumOfDislikes = document.getElementById("numOfDislikes");
         cardTitle.innerHTML = data.title;
         cardText.innerHTML = data.text;
         cardUser.innerHTML = data.owner;
         cardTime.innerHTML = timeSince(data.createdAt.toDate());
         cardNumOfComments.innerHTML = data.numOfComments ? data.numOfComments : 0;
+        cardNumOfLikes.innerHTML = data.numOfLikes ? data.numOfLikes : 0;
+        cardNumOfDislikes.innerHTML = data.numOfDislikes ? data.numOfDislikes : 0;
         postElem.after(clonePostElem);
         postElem.id = doc.id;
         postElem.style.display = "block"; //hides model card
