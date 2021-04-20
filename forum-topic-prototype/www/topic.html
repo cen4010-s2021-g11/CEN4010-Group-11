@@ -124,7 +124,7 @@
                 <div class="inner-sidebar">
                     <!-- Inner sidebar header -->
                     <div class="inner-sidebar-header justify-content-center">
-                        <button class="btn btn-primary has-icon btn-block" type="button" data-toggle="modal" data-target="#threadModal">
+                        <button id="newDiscussion" class="btn btn-primary has-icon btn-block" type="button" data-toggle="modal" data-target="#threadModal">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus mr-2">
                                 <line x1="12" y1="5" x2="12" y2="19"></line>
                                 <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -250,10 +250,10 @@
                     <!-- Forum Detail -->
                     <div class="inner-main-body p-2 p-sm-3 collapse forum-content">
                         <a href="#" id="goBack" class="btn btn-light btn-sm mb-3 has-icon" data-toggle="collapse" data-target=".forum-content"><i class="fa fa-arrow-left mr-2"></i>Back</a>
-                        <div style="display:block" id="parentComment" class="card mb-2 parent" data-toggle="collapse" data-target=".forum-content">
+                        <div style="display:block" id="parentComment" class="card mb-2 parent">
                             <div class="card-body p-2 p-sm-3">
                                 <div class="media forum-item">
-                                    <a href="#" id="showComments" data-toggle="collapse" data-target=".forum-content"><img src="https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg" class="mr-3 rounded-circle" width="50" alt="User" /></a>
+                                    <a href="javascript:void(0)" onclick="goToProfile(this);"><i id="parentUserImage" class="mr-3 rounded-circle profIcon"></i></a>
                                     <div class="media-body">
                                         <h6 style="padding-bottom: 0px" id="parentTitle"><a href="#" data-toggle="collapse" data-target=".forum-content" class="text-body">Welcome to the Mental Health Thread</a></h6>
                                         <div class="row" style="padding-left: 15px;">
@@ -275,10 +275,7 @@
                         <div class="card mb-2 comment" id="comment" style="display: none; margin-left: 3%;">
                             <div class="card-body">
                                 <div class="media forum-item">
-                                    <a href="javascript:void(0)" class="card-link">
-                                        <img src="https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg" class="rounded-circle" width="50" alt="User" />
-                                        <!-- <small class="d-block text-center text-muted" id="admin">Admin</small> -->
-                                    </a>
+                                    <a href="javascript:void(0)" onclick="goToProfile(this);"><i id="commentImage" class="mr-3 rounded-circle profIcon"></i></a>
                                     <div class="media-body ml-3">
                                         <a href="javascript:void(0)" class="text-secondary" id="username">Mokrani</a>
                                         <small class="text-muted ml-2" id="commentTime">1 hour ago</small>

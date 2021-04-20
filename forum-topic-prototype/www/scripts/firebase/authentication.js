@@ -60,6 +60,7 @@ function registerWithEmail() {
               });
         })
         .catch((error) => {
+            alert(error.message);
             console.log(`${error.code}: ${error.message}`);
             document.getElementById("loginErrors").innerHTML = error.message;
         });

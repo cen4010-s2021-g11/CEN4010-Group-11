@@ -1,36 +1,49 @@
 var currUser;
+var currUserEmail;
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
         currUser = user;
+        currUserEmail = user.email;
         renderUserLikes();
         renderUserDislikes();
     } else {
+        currUserEmail = " ";
         console.log("Error: no user found");
     }
 });
 
 function getActionLike(elem){
-    var dislikeBtn = elem.nextSibling.nextSibling.nextSibling.nextSibling;
-    if(dislikeBtn.classList.contains("alreadyDisliked")){
-        undoDislike(elem);
-    }
-    if(elem.classList.contains("alreadyLiked")){
-        unlike(elem);
+    if(currUser){
+        var dislikeBtn = elem.nextSibling.nextSibling.nextSibling.nextSibling;
+        if(dislikeBtn.classList.contains("alreadyDisliked")){
+            undoDislike(elem);
+        }
+        if(elem.classList.contains("alreadyLiked")){
+            unlike(elem);
+        }else{
+            addLike(elem);
+        }
     }else{
-        addLike(elem);
+        alert("Please sign in to use this feature.");
     }
+    
 }
 
 function getActionDislike(elem){
-    var likeBtn = elem.previousSibling.previousSibling.previousSibling.previousSibling;
-    if(likeBtn.classList.contains("alreadyLiked")){
-        unlike(elem);
-    }
-    if(elem.classList.contains("alreadyDisliked")){
-        undoDislike(elem);
+    if(currUser){
+        var likeBtn = elem.previousSibling.previousSibling.previousSibling.previousSibling;
+        if(likeBtn.classList.contains("alreadyLiked")){
+            unlike(elem);
+        }
+        if(elem.classList.contains("alreadyDisliked")){
+            undoDislike(elem);
+        }else{
+            addDislike(elem);
+        }
     }else{
-        addDislike(elem);
+        alert("Please sign in to use this feature.");
     }
+    
 }
 
 function addLike(elem){
@@ -48,7 +61,7 @@ function addLike(elem){
         updateUI(postID, "like");
     })
     .catch((error) => {
-        alert("An error has occurred!");
+        alert("An error has occured.");
         console.log(error);
     })
 }
@@ -68,7 +81,7 @@ function addDislike(elem){
         updateUI(postID, "dislike");
     })
     .catch((error) => {
-        alert("An error has occurred!");
+        alert("An error has occured.");
         console.log(error);
     })
 }
