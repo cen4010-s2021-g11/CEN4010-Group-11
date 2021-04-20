@@ -14,20 +14,27 @@ const urlParams = new URLSearchParams(queryString);
 const userIDPar = urlParams.get('user');
 
 firebase.auth().onAuthStateChanged(function(user) {
-    if(userIDPar && userIDPar != user.uid) {
+    if(user){
+        if(userIDPar && userIDPar != user.uid) {
+            document.getElementById("editProfileBtn").style.display = "none";
+            document.getElementById("signOutBtn").style.display = "none";
+            getUser(userIDPar);
+        }
+        else {
+            if (user) {
+                currUser = user;
+                username.innerHTML = currUser.displayName; 
+                displayName.innerHTML = currUser.displayName;
+                email.innerHTML = currUser.email;
+                getUser(user.uid);
+            } else { console.log("Error: no user found"); }
+        }
+    }else{
         document.getElementById("editProfileBtn").style.display = "none";
         document.getElementById("signOutBtn").style.display = "none";
         getUser(userIDPar);
     }
-    else {
-        if (user) {
-            currUser = user;
-            username.innerHTML = currUser.displayName; 
-            displayName.innerHTML = currUser.displayName;
-            email.innerHTML = currUser.email;
-            getUser(user.uid);
-        } else { console.log("Error: no user found"); }
-    }
+    
 });
 
 function getUser(userid) {
