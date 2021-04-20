@@ -166,7 +166,6 @@ function renderPosts() {
         var cardPic = document.getElementById("userImage");
 
         cardPic.className = "mr-3 rounded-circle profIcon";
-        console.log(data.ownerPic);
         if(data.ownerPic == "" || data.ownerPic == undefined){
             cardPic.classList.add("fa-user");
         }else{
@@ -185,7 +184,6 @@ function renderPosts() {
         postElem.after(clonePostElem);
         postElem.id = doc.id;
         postElem.style.display = "block"; //hides model card
-        //document.getElementById("loadMore").style.display = "none";
     })
 }
 
