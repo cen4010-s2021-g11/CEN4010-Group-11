@@ -92,7 +92,7 @@ function createPost() {
     var postTitle = document.getElementById("threadTitle").value;
     var postText = document.getElementById("postText").value;
 
-    if(currUserEmail != ""){
+    if(currUserEmail != "" && currUser) {
         ref.collection('posts').add({
             title: postTitle,
             text: postText,
@@ -121,7 +121,7 @@ function createPost() {
             console.error("Error writing document: ", error);
         });
     }else{
-        alert("Hey bud, please sign in to contribute to the forum!");
+        alert("Please sign in to contribute to the forum!");
         $("#threadModal").modal("hide");
     }
     
@@ -162,7 +162,6 @@ function renderPosts() {
         var cardPic = document.getElementById("userImage");
 
         cardPic.className = "mr-3 rounded-circle profIcon";
-        console.log(data.ownerPic);
         if(data.ownerPic == "" || data.ownerPic == undefined){
             cardPic.classList.add("fa-user");
         }else{
@@ -181,7 +180,6 @@ function renderPosts() {
         postElem.after(clonePostElem);
         postElem.id = doc.id;
         postElem.style.display = "block"; //hides model card
-        //document.getElementById("loadMore").style.display = "none";
     })
 }
 
