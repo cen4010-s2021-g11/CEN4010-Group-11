@@ -92,39 +92,43 @@ function createPost() {
     var postTitle = document.getElementById("threadTitle").value;
     var postText = document.getElementById("postText").value;
 
-    if(currUserEmail != "" && currUser) {
-        ref.collection('posts').add({
-            title: postTitle,
-            text: postText,
-            owner: currUser.email,
-            ownerID: currUser.uid,
-            ownerPic: currPfp,
-            createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-        })
-        .then((post) => {
-            alert("Post Successful! Thank you for your contribution to the DIVOC Forum");
-            console.log("Document successfully written!");
-
-            db.collection("users").doc(currUser.uid).update({
-                posts: firebase.firestore.FieldValue.arrayUnion(post)
-            }).catch((error) => {
-                console.log(error);
+    if (postTitle == "" || postText == "") {
+        document.getElementById("postError").innerHTML = "You must input a title and a body of text to make a post";
+        document.getElementById("postError").style.color = "red";
+    } else  {
+        if(currUserEmail != "" && currUser){
+            ref.collection('posts').add({
+                title: postTitle,
+                text: postText,
+                owner: currUser.email,
+                ownerID: currUser.uid,
+                ownerPic: currPfp,
+                createdAt: firebase.firestore.FieldValue.serverTimestamp(),
             })
-
-            ref.update({
-                numOfPosts: firebase.firestore.FieldValue.increment(1)
-            })
-            analytics.logEvent('new_post', { topic: topic});
-            location.reload();
-        })
-        .catch((error) => {
-            console.error("Error writing document: ", error);
-        });
-    }else{
-        alert("Please sign in to contribute to the forum!");
-        $("#threadModal").modal("hide");
-    }
+            .then((post) => {
+                alert("Post Successful! Thank you for your contribution to the DIVOC Forum");
+                console.log("Document successfully written!");
     
+                db.collection("users").doc(currUser.uid).update({
+                    posts: firebase.firestore.FieldValue.arrayUnion(post)
+                }).catch((error) => {
+                    console.log(error);
+                })
+    
+                ref.update({
+                    numOfPosts: firebase.firestore.FieldValue.increment(1)
+                })
+                analytics.logEvent('new_post', { topic: topic});
+                location.reload();
+            })
+            .catch((error) => {
+                console.error("Error writing document: ", error);
+            });
+        }else{
+            alert("Hey bud, please sign in to contribute to the forum!");
+            $("#threadModal").modal("hide");
+        }
+    }
 }
 
 function getPosts() {
