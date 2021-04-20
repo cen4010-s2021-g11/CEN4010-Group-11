@@ -79,6 +79,8 @@ function getUser(userid) {
                 postCount.innerHTML = doc.data().posts.length + " total posts"; 
             }
             
+            if(!doc.data().posts) { return }
+            
             for (var i = 0; i < doc.data().posts.length; i++) {
                 path = doc.data().posts[i]._delegate._key.path.segments
                 postPath = path[5] + "/" + path[6] + "/" + path[7];
