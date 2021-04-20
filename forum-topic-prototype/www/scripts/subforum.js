@@ -42,7 +42,8 @@ ref.get()
         document.getElementById("title").innerHTML = doc.data().title;
         if(topic == "announcements"){
             if(currUserEmail != "akrause2017@fau.edu" || currUserEmail != "zgoldstein2018@fau.edu" ||
-               currUserEmail != "ssoulard2018@fau.edu" || currUserEmail != "bque2018@fau.edu"){
+               currUserEmail != "ssoulard2018@fau.edu" || currUserEmail != "bque2018@fau.edu" ||
+               currUserEmail != "csalazar2018@fau.edu"){
                 document.getElementById("newDiscussion").disabled = true;
                 document.getElementById("newDiscussion").innerHTML = "ADMINS ONLY";
             }
