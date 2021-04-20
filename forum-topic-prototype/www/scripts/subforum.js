@@ -113,7 +113,7 @@ function createPost() {
             ref.update({
                 numOfPosts: firebase.firestore.FieldValue.increment(1)
             })
-            
+            analytics.logEvent('new_post', { topic: topic});
             location.reload();
         })
         .catch((error) => {
