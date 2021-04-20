@@ -37,10 +37,12 @@ firebase.auth().onAuthStateChanged(function(user) {
     
 });
 
-function getUser(userid) {
+function getUser(userid) {  
     db.collection('users').doc(userid).get().then((doc) => {
         if (doc.exists) {
             tempUser = doc.data();
+
+            document.getElementById("displayName").innerHTML = doc.data().displayName;
             username.innerHTML = doc.data().displayName;
             email.innerHTML = doc.data().email;
 
@@ -73,6 +75,7 @@ function getUser(userid) {
 
             if (doc.data().posts == undefined) {
                 postCount.innerHTML = "0 total posts";
+                document.getElementById("noActivity").innerHTML = "User has no activity";
             } else if (doc.data().posts.length == 1) {
                 postCount.innerHTML = doc.data().posts.length + " total post"; 
             } else { 
