@@ -35,6 +35,7 @@ document.querySelector("#profileBtn").addEventListener("click", function(e) {
 
 function goToProfile(e) {
     var postID = e.parentElement.parentElement.parentElement.id;
+    console.log(postID);
     var post = posts.find(post => post.id == postID);
     var ownerID = post.data().ownerID;
     if(ownerID) {

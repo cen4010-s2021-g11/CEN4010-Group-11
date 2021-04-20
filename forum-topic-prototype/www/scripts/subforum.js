@@ -40,6 +40,13 @@ document.querySelector("#cancelSearch").addEventListener("click", function(e) {
 ref.get()
     .then((doc) => {
         document.getElementById("title").innerHTML = doc.data().title;
+        if(topic == "announcements"){
+            if(currUserEmail != "akrause2017@fau.edu" || currUserEmail != "zgoldstein2018@fau.edu" ||
+               currUserEmail != "ssoulard2018@fau.edu" || currUserEmail != "bque2018@fau.edu"){
+                document.getElementById("newDiscussion").disabled = true;
+                document.getElementById("newDiscussion").innerHTML = "ADMINS ONLY";
+            }
+        }
     }).catch((error) => {
         console.log("Error has occurred", error);
     })
@@ -212,6 +219,17 @@ function renderSearchResults() {
         var cardNumOfComments = document.getElementById("numOfComments");
         var cardNumOfLikes = document.getElementById("numOfLikes");
         var cardNumOfDislikes = document.getElementById("numOfDislikes");
+        var cardPic = document.getElementById("userImage");
+
+        cardPic.className = "mr-3 rounded-circle profIcon";
+        console.log(data.ownerPic);
+        if(data.ownerPic == "" || data.ownerPic == undefined){
+            cardPic.classList.add("fa-user");
+        }else{
+            cardPic.classList.add(data.ownerPic);
+        }
+        cardPic.classList.add("fa");
+        cardPic.classList.add("fa-2x");
         cardTitle.innerHTML = data.title;
         cardText.innerHTML = data.text;
         cardUser.innerHTML = data.owner;

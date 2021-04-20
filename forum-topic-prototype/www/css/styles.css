@@ -263,6 +263,11 @@ body{margin-top:20px;
         border-color: #1ab394;
     }
 
+    .btn-primary:disabled{
+      background-color: #179d82;
+      border-color: #179d82;
+    }
+
     .btn-primary:hover{
         background-color: #179d82;
         border-color: #179d82;

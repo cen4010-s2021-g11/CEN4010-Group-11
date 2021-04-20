@@ -3,8 +3,13 @@ var parent;
 var currPostID;
 
 document.querySelector("#createComment").addEventListener('click', function() {
-    console.log("clicked")
-    createComment();
+    console.log("clicked");
+    if(currUser){
+        createComment();
+    }else{
+        alert("Please sign in to use this feature!");
+    }
+    
 })
 
 document.querySelector("#goBack").addEventListener('click', function() {
@@ -71,30 +76,42 @@ function renderPost() {
     ref.collection("posts").doc(currPostID).get()
         .then((doc) => {
             parent = doc;
-            renderComments();
+            renderComments(currPostID);
         })
 }
 
-function renderComments() {
+function renderComments(currPostID) {
     const data = parent.data();
+    console.log(currPostID);
     var commentElem = document.getElementsByClassName("comment")[0]
-
     var parentElem = document.getElementById("parentComment");
+    parentElem.id = currPostID;
     var cardTitle = document.getElementById("parentTitle");
     var cardText = document.getElementById("parentText");
     var cardUser = document.getElementById("parentUser");
     var cardTime = document.getElementById("parentTime");
-    cardTitle.innerHTML = data.title;
-    cardText.innerHTML = data.text;
-    cardUser.innerHTML = data.owner;
-    cardTime.innerHTML = timeSince(data.createdAt.toDate());
+    var cardPic = document.getElementById("parentUserImage");
+
+        cardPic.className = "mr-3 rounded-circle profIcon";
+        console.log(data.ownerPic);
+        if(data.ownerPic == "" || data.ownerPic == undefined){
+            cardPic.classList.add("fa-user");
+        }else{
+            cardPic.classList.add(data.ownerPic);
+        }
+        cardPic.classList.add("fa");
+        cardPic.classList.add("fa-2x");
+        cardTitle.innerHTML = data.title;
+        cardText.innerHTML = data.text;
+        cardUser.innerHTML = data.owner;
+        cardTime.innerHTML = timeSince(data.createdAt.toDate());
+    
     commentElem.before(parentElem);
 
     comments.forEach((comment) => {
         const data = comment.data();
         var cloneCommentElem = commentElem.cloneNode(true);
         cloneCommentElem.id = comment.id;
-
 
         var cardUsername = document.getElementById("username");
         var cardContent = document.getElementById("content");
