@@ -1,6 +1,5 @@
 //For Firebase JS SDK v7.20.0 and later, measurementId is optional
 //Go to Firebase project, then project settings, then scroll down to view Firebase SDK config
-
 const firebaseConfig = {
 	apiKey: "AIzaSyBMYpCdReggTVnRMGI47Z3BUFOaRYR9rxI",
   	authDomain: "login-70193.firebaseapp.com",
@@ -13,4 +12,4 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 var db = firebase.firestore();
-const defaultAnalytics = firebase.analytics();
+const analytics = firebase.analytics();
