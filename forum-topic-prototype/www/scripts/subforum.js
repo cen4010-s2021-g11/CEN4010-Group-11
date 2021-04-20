@@ -93,8 +93,7 @@ function createPost() {
     var postText = document.getElementById("postText").value;
 
     if (postTitle == "" || postText == "") {
-        document.getElementById("postError").innerHTML = "You must input a title and a body of text to make a post";
-        document.getElementById("postError").style.color = "red";
+        alert("You must input a title and a body of text to make a post");
     } else  {
         if(currUserEmail != "" && currUser){
             ref.collection('posts').add({
