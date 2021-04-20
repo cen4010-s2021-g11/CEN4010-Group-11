@@ -60,9 +60,9 @@ function registerWithEmail() {
               });
         })
         .catch((error) => {
-            alert(error.message);
             console.log(`${error.code}: ${error.message}`);
-            document.getElementById("loginErrors").innerHTML = error.message;
+            document.getElementById("createErrors").innerHTML = error.message;
+            document.getElementById("createErrors").style.color = "red";
         });
     }else{
         alert("Passwords do not match");
