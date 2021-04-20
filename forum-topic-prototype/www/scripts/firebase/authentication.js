@@ -85,6 +85,7 @@ function login() {
         .catch((error) => {
             console.log(error.message);
             document.getElementById("loginErrors").innerHTML = error.message;
+            document.getElementById("loginErrors").style.color = "red";
         });
 }
 
