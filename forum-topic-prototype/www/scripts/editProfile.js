@@ -29,15 +29,17 @@ document.getElementById("btnSave").addEventListener("click", function(){
         .then((doc) => {
             if(doc.exists){
                 var data = doc.data();
-                for(var i = 0; i<data.posts.length; i++){
-                    var ref = data.posts[i];
-                    ref.update({
-                        ownerPic: pfp,
-                    }).then(() =>{
-                        console.log("saved pfp");
-                    }).catch((error) => {
-                        console.log("Error getting document:", error);
-                    });
+                if(data.posts) { 
+                    for(var i = 0; i<data.posts.length; i++){
+                        var ref = data.posts[i];
+                        ref.update({
+                            ownerPic: pfp,
+                        }).then(() =>{
+                            console.log("saved pfp");
+                        }).catch((error) => {
+                            console.log("Error getting document:", error);
+                        });
+                    }
                 }
             }
             window.location.href = "profile.html";
